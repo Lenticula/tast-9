@@ -1,0 +1,36 @@
+#include"stdio.h"
+
+typedef struct Country
+{
+    char name[100];
+    int AuNum;
+    int AgNum;
+	int CuNum;
+	int total;
+}Country;
+
+int main()
+{
+    Country c[8];
+	FILE* fp=fopen("D:/new test.txt","r");
+	if(fp==NULL)
+	{
+	   printf("error\n");
+       return 0;
+	}
+
+	for(int i;i<8;i++)
+	{
+	   fscanf(fp,"%s %d %d %d %d",&c[i].name,&c[i].AuNum,&c[i].AgNum,&c[i].CuNum,&c[i].total);
+	}
+
+	fclose(fp);
+
+	FILE* outfp=fopen("./file_sorted.txt","w");
+	for(int j;j<8;j++)
+	{
+        fprintf(outfp,"%s\t%d\t%d\t%d\t%d",&c[j].name,&c[j].AuNum,&c[j].AgNum,&c[j].CuNum,&c[j].total);
+	}
+	fclose(outfp);
+    return 0;
+}
